@@ -17,7 +17,6 @@ defmodule DiscussWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    post "/", PageController, :search
   end
 
   # Other scopes may use custom stacks.

@@ -3,24 +3,20 @@ defmodule DiscussWeb.PageController do
 
   def index(conn, params) do
     name = params["search"]["name"]
-    :ets.last(:db)
-    |> IO.inspect
-    render(conn, "index.html", name: name)
-  end
-
-  def search(conn, params) do
-    name = params["search"]["name"]
-    data = :ets.match_object(
-      :db,
-      {:_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, name, :_, :_, :_, :_, :_, :_}
-    )
+    raw_data = :ets.match_object(:db, {:_, :_, :_, :_, :_, name})
     headers = :ets.lookup(:db, :headers)
-    headers |> IO.inspect
+    raw_data
+    |> IO.inspect
 
-    data = Enum.map(data, fn e -> Enum.zip(headers[:headers], Tuple.to_list(e)) |> Enum.into(%{}) end) |> IO.inspect
-
+    data = Enum.map(
+             raw_data,
+             fn e ->
+               Enum.zip(headers[:headers], Tuple.to_list(e))
+               |> Enum.into(%{})
+               |> Map.drop(["", "#"]) end
+           )
+           |> IO.inspect
 
     render(conn, "index.html", name: name, data: data)
   end
-
 end

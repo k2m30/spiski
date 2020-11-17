@@ -25,13 +25,17 @@ defmodule Discuss.Worker do
   end
 
   defp do_work do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "15.11")
-    {:ok, rows} = GSS.Spreadsheet.read_rows(pid, 1, 10, column_to: 23, pad_empty: true)
-    [headers | data ] = rows
-    headers |> IO.inspect
+    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "15.11 для Публикации")
+    {:ok, rows_number} = GSS.Spreadsheet.rows(pid)
 
-    :ets.insert(:db, {:headers, headers})
-    Enum.each(data, fn row -> :ets.insert(:db, [Enum.at(row, 1), row] |> List.flatten |> List.to_tuple)  end)
-#    :ets.match_object(:db, {:_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, :_, "Аносов", :_, :_, :_, :_, :_, :_, :_, :_, :_}) |> IO.inspect
+    batch_size = 300
+    for i <- 0..div(rows_number,batch_size) do
+      {:ok, rows} = GSS.Spreadsheet.read_rows(pid, i*batch_size+1, (i+1)*batch_size, column_to: 5, pad_empty: true)
+      if i == 0 do
+        [headers | rows ] = rows
+        :ets.insert(:db, {:headers, headers})
+      end
+      Enum.each(rows, fn row ->  :ets.insert(:db, row ++ [Enum.at(row, 1) |> String.split |> List.first] |> List.to_tuple)  end)
+    end
   end
 end
