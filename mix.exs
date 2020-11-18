@@ -45,7 +45,8 @@ defmodule Discuss.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:elixir_google_spreadsheets, "~> 0.1.17"}
+      {:elixir_google_spreadsheets, "~> 0.1.17"},
+      {:timex, "~> 3.5"}
     ]
   end
 
