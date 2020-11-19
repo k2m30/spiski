@@ -8,7 +8,7 @@ defmodule Discuss.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Discuss.Repo,
+#      Discuss.Repo,
       # Start the Telemetry supervisor
       DiscussWeb.Telemetry,
       # Start the PubSub system
