@@ -9,7 +9,7 @@ defmodule SpiskiWeb.PageController do
   end
 
   defp search(name) when name != "" do
-    raw_data = :ets.match_object(:db, {:_, :_, :_, :_, :_, name})
+    raw_data = :ets.match_object(:db, {:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_,:_, name})
     headers = :ets.lookup(:db, :headers)
 
     data = Enum.map(

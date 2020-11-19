@@ -25,12 +25,12 @@ defmodule Spiski.Worker do
   end
 
   defp do_work do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "15.11 для Публикации")
+    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "01.11-16.11 для публикации")
     {:ok, rows_number} = GSS.Spreadsheet.rows(pid)
 
     batch_size = 300
     for i <- 0..div(rows_number,batch_size) do
-      {:ok, rows} = GSS.Spreadsheet.read_rows(pid, i*batch_size+1, (i+1)*batch_size, column_to: 5, pad_empty: true)
+      {:ok, rows} = GSS.Spreadsheet.read_rows(pid, i*batch_size+1, (i+1)*batch_size, column_to: 22, pad_empty: true)
       if i == 0 do
         [headers | rows ] = rows
         :ets.insert(:db, {:headers, headers})
