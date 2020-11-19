@@ -7,31 +7,18 @@
 # General application configuration
 use Mix.Config
 
-config :discuss,
-       ecto_repos: [Discuss.Repo]
-
 # Configures the endpoint
-config :discuss,
-       DiscussWeb.Endpoint,
-       url: [
-         host: "localhost"
-       ],
-       secret_key_base: "9LZ+YewLAiDpiIblv1m+9cSVdhi6ZKGLJUu/uobRtXUpKmymrfKa8Gxl8bTowGqJ",
-       render_errors: [
-         view: DiscussWeb.ErrorView,
-         accepts: ~w(html json),
-         layout: false
-       ],
-       pubsub_server: Discuss.PubSub,
-       live_view: [
-         signing_salt: "lw9yyy3T"
-       ]
+config :spiski, SpiskiWeb.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "2lF1Ze5fxHdPdSAgvofdCZxdoDNfwbZmpkEuw0q4W3ZnAuKZK2+OvO8VPr+9JMEI",
+  render_errors: [view: SpiskiWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Spiski.PubSub,
+  live_view: [signing_salt: "Z9qqCgWX"]
 
 # Configures Elixir's Logger
-config :logger,
-       :console,
-       format: "$time $metadata[$level] $message\n",
-       metadata: [:request_id]
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

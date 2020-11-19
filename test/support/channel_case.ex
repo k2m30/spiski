@@ -1,4 +1,4 @@
-defmodule DiscussWeb.ChannelCase do
+defmodule SpiskiWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule DiscussWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use DiscussWeb.ChannelCase, async: true`, although
+  by setting `use SpiskiWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,20 +21,14 @@ defmodule DiscussWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import DiscussWeb.ChannelCase
+      import SpiskiWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint DiscussWeb.Endpoint
+      @endpoint SpiskiWeb.Endpoint
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Discuss.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Discuss.Repo, {:shared, self()})
-    end
-
+  setup _tags do
     :ok
   end
 end

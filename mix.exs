@@ -1,9 +1,9 @@
-defmodule Discuss.MixProject do
+defmodule Spiski.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :discuss,
+      app: :spiski,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Discuss.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Discuss.Application, []},
+      mod: {Spiski.Application, []},
       extra_applications: [:logger, :runtime_tools, :elixir_google_spreadsheets]
     ]
   end
@@ -34,9 +34,6 @@ defmodule Discuss.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.5.6"},
-#      {:phoenix_ecto, "~> 4.1"},
-#      {:ecto_sql, "~> 3.4"},
-#      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.3 or ~> 0.2.9"},
@@ -58,10 +55,7 @@ defmodule Discuss.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      setup: ["deps.get", "cmd npm install --prefix assets"]
     ]
   end
 end
