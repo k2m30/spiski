@@ -25,7 +25,7 @@ defmodule Spiski.Worker do
   end
 
   defp do_work do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "01.11-16.11 для публикации")
+    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet("1NSxHGQJMDg3yGnydYBu4sA2IrXtSVGYB4EPYF9EkvYc", list_name: "Ноябрь для публикации")
     {:ok, rows_number} = GSS.Spreadsheet.rows(pid)
 
     batch_size = 300

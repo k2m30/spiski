@@ -15,7 +15,7 @@ defmodule Spiski.Application do
       SpiskiWeb.Endpoint,
       # Start a worker by calling: Spiski.Worker.start_link(arg)
       # {Spiski.Worker, arg}
-      {Spiski.Worker, timeout: 10000}
+      {Spiski.Worker, timeout: 20_000}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
