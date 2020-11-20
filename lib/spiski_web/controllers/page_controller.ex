@@ -2,7 +2,7 @@ defmodule SpiskiWeb.PageController do
   use SpiskiWeb, :controller
 
   def index(conn, params) do
-    name = (params["search"]["name"] || "") |> String.split |> List.first |> String.trim |> String.capitalize
+    name = (params["search"]["name"] || "") |> String.split |> (List.first) || "" |> String.trim |> String.capitalize
     data = search(name)
     data |> IO.inspect
     render(conn, "index.html", name: name, data: data, db_size: :ets.info(:db)[:size])
