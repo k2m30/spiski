@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col s12 m4 l2"></div>
         <div class="col s12 m4 l8">
-            <h5>фамилия задержанного:</h5>
+            <h5>фамилии задержанных, через запятую:</h5>
             <%= form_for :search, Routes.page_path(SpiskiWeb.Endpoint, :index), [method: :get], fn f -> %>
             <div class="input-field">
-                <%= text_input f, :name, value: @name, placeholder: "фамилия", class: "form-control" %>
+                <%= text_input f, :names, value: Enum.join(@names, ", "), placeholder: "фамилии через запятую", class: "form-control" %>
             </div>
             <%= submit "Искать", class: "btn btn-large btn-primary" %>
 
@@ -16,62 +16,57 @@
 
 </section>
 
-<section>
-    <div class="row">
-        <div class="col s12 m4 l2"></div>
-        <div class="col s12 m4 l8">
-            <%= for person <- @data do %>
-                <p><%= "ФИО: #{person["ФИО"]}" %></p>
+<%= for name <- @names do %>
+    <section>
+        <div class="row">
+            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l8">
+                <h5><%= name %>:</h5>
+                <%= for person <- @data[name] do %>
+                    <p><%= "ФИО: #{person["ФИО"]}" %></p>
 
-                <%= if person["Год"] != "" do %>
-                    <p><%= "Год или дата рождения: #{person["Год"]}" %></p>
-                <% else %>
-                    <p> Год или дата рождения: неизвестно </p>
-                <% end %>
+                    <%= if person["Год"] != "" do %>
+                        <p><%= "Год или дата рождения: #{person["Год"]}" %></p>
+                    <% else %>
+                        <p> Год или дата рождения: неизвестно </p>
+                    <% end %>
 
-                <%= if person["Сводка"] != "" do %>
-                    <p><%= "Что известно: #{person["Сводка"]}" %></p>
-                <% else %>
-                <p> Что известно: поступила информация о задержании, ждём дополнительной информации. Как только что-то будет
-                    известно, информация отобразится на сайте. </p>
-                <% end %>
+                    <%= if person["Сводка"] != "" do %>
+                        <p><%= "Что известно: #{person["Сводка"]}" %></p>
+                    <% else %>
+                    <p> Что известно: поступила информация о задержании, ждём дополнительной информации. Как только что-то будет
+                        известно, информация отобразится на сайте. </p>
+                    <% end %>
 
-                <%= if person["Суд, судья, приговор"] != "" or person["Сутки"] != "" do %>
-                    <p><%= "Суд, судья, приговор: #{person["Суд, судья, приговор"]} #{person["Сутки"]} " %></p>
-                <% end %>
+                    <%= if person["Суд, судья, приговор"] != "" or person["Сутки"] != "" do %>
+                        <p><%= "Суд, судья, приговор: #{person["Суд, судья, приговор"]} #{person["Сутки"]} #{person["Штраф"]} " %></p>
+                    <% end %>
 
-                <%= if person["Отпустили"] != "" do %>
-                    <p><%= "Дополнительная информация: #{person["Отпустили"]}" %></p>
-                <% end %>
+                    <%= if person["Отпустили"] != "" do %>
+                        <p><%= "Дополнительная информация: #{person["Отпустили"]}" %></p>
+                    <% end %>
 
-                <%= if person["Дата задержания"] != "" do %>
-                    <p><%= "Дата задержания: #{person["Дата задержания"]}" %></p>
-                <% end %>
+                    <%= if person["Дата задержания"] != "" do %>
+                        <p><%= "Дата задержания: #{person["Дата задержания"]}" %></p>
+                    <% end %>
 
-                <%= if person["Дата выхода"] != "" do %>
-                    <p><%= "Дата выхода: #{person["Дата выхода"]} #{person["Время выхода"]} " %></p>
-                <% end %>
+                    <%= if person["Дата выхода"] != "" do %>
+                        <p><%= "Дата выхода: #{person["Дата выхода"]} #{person["Время выхода"]} " %></p>
+                    <% end %>
 
                 <hr/>
 
-            <% end %>
+                <% end %>
 
+                <%= if @data[name] == [] and name != "" do %>
+                <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите об этом в Телеграме в
+                    <a href="https://t.me/@bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
+                <hr/>
+                <% end %>
+
+            </div>
+            <div class="col s12 m4 l2"></div>
         </div>
-        <div class="col s12 m4 l2"></div>
-    </div>
 
-
-    <div class="row">
-        <div class="col s12 m4 l2"></div>
-        <div class="col s12 m4 l8">
-            <%= if @data == [] and @name != "" do %>
-            <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите об этом в Телеграме в
-                <a href="https://t.me/@bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
-            <% end %>
-
-            <p><b>Последнее обновление в <%=" #{Timex.now |> Timex.format!("%H:%M:%S", :strftime)} " %></b></p>
-        </div>
-        <div class="col s12 m4 l2"></div>
-    </div>
-
-</section>
+    </section>
+<% end %>
