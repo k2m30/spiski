@@ -6,12 +6,11 @@ defmodule SpiskiWeb.PageController do
             |> String.split(",")
             |> Enum.map(
                  &(
-                   &1
+                   String.capitalize(&1
                    |> String.trim
                    |> String.split
-                   |> (List.first) || ""
-                   |> String.trim
-                   |> String.capitalize)
+                   |> (List.first) || "")
+                   |> String.trim)
                )
             |> Enum.reject(&(&1 == ""))
 
