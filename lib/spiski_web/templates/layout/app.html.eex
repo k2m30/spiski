@@ -13,7 +13,7 @@
 <body>
 <nav>
     <div class="nav-wrapper light-blue">
-        <a href="#" class="brand-logo center">Ищем близких</a>
+        <a href="#" class="brand-logo center" style="font-size:1.5rem" >Ищем близких</a>
     </div>
 </nav>
 
@@ -23,5 +23,17 @@
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
     <%= @inner_content %>
 </main>
+<footer class="page-footer white">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m4 l2"></div>
+            <div class="col s12 m4 l8">
+                <p class="black-text text-lighten-4">Информация собрана волонтёрами канала <a href="https://t.me/spiski_okrestina" target="_blank" >@spiski_okrestina</a> из всех доступных источников.  </p>
+                <p class="black-text text-lighten-4"><%= "В базе информация о #{@db_size} задержаниях с 01.10.2020" %>  </p>
+            </div>
+            <div class="col s12 m4 l2"></div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

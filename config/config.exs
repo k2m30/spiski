@@ -8,17 +8,27 @@
 use Mix.Config
 
 # Configures the endpoint
-config :spiski, SpiskiWeb.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "2lF1Ze5fxHdPdSAgvofdCZxdoDNfwbZmpkEuw0q4W3ZnAuKZK2+OvO8VPr+9JMEI",
-  render_errors: [view: SpiskiWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Spiski.PubSub,
-  live_view: [signing_salt: "Z9qqCgWX"]
+config :spiski,
+       SpiskiWeb.Endpoint,
+       url: [
+         host: "localhost"
+       ],
+       secret_key_base: "2lF1Ze5fxHdPdSAgvofdCZxdoDNfwbZmpkEuw0q4W3ZnAuKZK2+OvO8VPr+9JMEI",
+       render_errors: [
+         view: SpiskiWeb.ErrorView,
+         accepts: ~w(html json),
+         layout: false
+       ],
+       pubsub_server: Spiski.PubSub,
+       live_view: [
+         signing_salt: "Z9qqCgWX"
+       ]
 
 # Configures Elixir's Logger
-config :logger, :console,
-  format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+config :logger,
+       :console,
+       format: "$time $metadata[$level] $message\n",
+       metadata: [:request_id]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
@@ -34,4 +44,5 @@ config :goth,
 
 config :elixir_google_spreadsheets,
        :client,
-       request_workers: 50
+       request_workers: 50,
+       recv_timeout: 10_000

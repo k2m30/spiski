@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s12 m4 l2"></div>
         <div class="col s12 m4 l8">
-            <h5>фамилия</h5>
+            <h5>фамилия задержанного:</h5>
             <%= form_for :search, Routes.page_path(SpiskiWeb.Endpoint, :index), [method: :get], fn f -> %>
             <div class="input-field">
                 <%= text_input f, :name, value: @name, placeholder: "фамилия", class: "form-control" %>
@@ -66,7 +66,7 @@
         <div class="col s12 m4 l8">
             <%= if @data == [] and @name != "" do %>
             <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите об этом в Телеграме в
-                @bel_spiski_bot</p>
+                <a href="https://t.me/@bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
             <% end %>
 
             <p><b>Последнее обновление в <%=" #{Timex.now |> Timex.format!("%H:%M:%S", :strftime)} " %></b></p>
