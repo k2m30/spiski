@@ -13,6 +13,7 @@ defmodule SpiskiWeb.PageController do
                    |> String.split
                    |> (List.first) || "")
                    |> String.trim)
+                   |> String.replace("ё", "е")
                )
             |> Enum.reject(&(&1 == ""))
 
