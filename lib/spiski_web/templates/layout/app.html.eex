@@ -14,10 +14,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ищем близких</title>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <!--<link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <!-- <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script> -->
+    <style>
+        *, *:after, *:before {
+            box-sizing: inherit
+        }
+
+
+        body {
+            color: #000000;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 1em;
+            font-weight: 300;
+            line-height: 1.6
+        }
+
+        hr {
+            border: 0;
+            border-top: 0.1rem solid #989898;
+            margin: 0.0rem 0
+        }
+
+        @media (min-width: 40rem) {
+            .row {
+                flex-direction: row;
+                margin-left: -1.0rem;
+                width: calc(100% + 2.0rem)
+            }
+
+            .row .column {
+                margin-bottom: inherit;
+                padding: 0 1.0rem
+            }
+        }
+
+        select {
+            width: auto;
+        }
+
+        @media (min-width: 40.0rem) {
+            /* Small devices (landscape phones, 576px and up) */
+            header section {
+                flex-direction: row;
+            }
+
+            header nav ul {
+                margin: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav>
