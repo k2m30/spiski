@@ -24,7 +24,7 @@ defmodule SpiskiWeb.Endpoint do
     at: "/",
     from: :spiski,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    only: ~w(css fonts images js favicon.ico robots.txt loaderio-12c32c6e37201332eb8800f218241d9a.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

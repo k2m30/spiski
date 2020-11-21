@@ -1,3 +1,5 @@
+require Logger
+
 defmodule SpiskiWeb.PageController do
   use SpiskiWeb, :controller
 
@@ -15,7 +17,7 @@ defmodule SpiskiWeb.PageController do
             |> Enum.reject(&(&1 == ""))
 
     data = names |> Enum.map(&(search(&1)))
-    Enum.zip(names, data) |> Enum.into(%{}) |> IO.inspect
+    Enum.zip(names, data) |> Enum.into(%{}) |> Logger.info
 
     render(conn, "index.html", names: names, data: Enum.zip(names, data) |> Enum.into(%{}), db_size: :ets.info(:db)[:size])
   end
