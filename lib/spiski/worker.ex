@@ -17,7 +17,7 @@ defmodule Spiski.Worker do
       refresh_time: 5 * 60 * 1000
     },
     today: %{
-      name: "Сегодня",
+      name: "Сегодня для публикации",
       start_index: 0,
       refresh_time: 5 * 60 * 1000
     }
