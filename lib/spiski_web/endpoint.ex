@@ -11,10 +11,10 @@ defmodule SpiskiWeb.Endpoint do
   ]
 
   socket "/socket", SpiskiWeb.UserSocket,
-    websocket: true,
+    websocket: false,
     longpoll: false
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+#  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -23,7 +23,7 @@ defmodule SpiskiWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :spiski,
-    gzip: false,
+    gzip: true,
     only: ~w(css fonts images js favicon.ico robots.txt loaderio-12c32c6e37201332eb8800f218241d9a.txt)
 
   # Code reloading can be explicitly enabled under the
