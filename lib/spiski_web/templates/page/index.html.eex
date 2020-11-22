@@ -3,7 +3,7 @@
         <div class="col s12 m4 l2"></div>
         <div class="col s12 m4 l8">
             <h5>фамилии задержанных, через запятую:</h5>
-            <%= form_for :search, Routes.page_path(SpiskiWeb.Endpoint, :index), [method: :get], fn f -> %>
+            <%= form_for :search, Routes.page_path(SpiskiWeb.Endpoint, :index), [method: :get, id: "search", class: "search"], fn f -> %>
             <div class="input-field">
                 <%= text_input f, :names, value: Enum.join(@names, ", "), placeholder: "фамилии через запятую", class: "form-control" %>
             </div>
