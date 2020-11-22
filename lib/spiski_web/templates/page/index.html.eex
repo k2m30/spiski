@@ -59,8 +59,8 @@
                 <% end %>
 
                 <%= if @data[name] == [] and name != "" do %>
-                <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите об этом в Телеграме в
-                    <a href="https://t.me/@bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
+                <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите <b>ФИО и дату задержания</b> в Телеграме в
+                    <a href="https://t.me/bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
                 <hr/>
                 <% end %>
 
@@ -70,3 +70,30 @@
 
     </section>
 <% end %>
+<section>
+    <div class="row">
+        <div class="col s12 m4 l2"></div>
+        <div class="col s12 m4 l8">
+            <p>Как ускорить процесс:
+            <ol>
+                <li>Обзвоните РУВД <a href="http://0908help.tilda.ws/ruvd" target="_blank">по телефонам</a>. Некоторую информацию сообщают только родным. Там будет постоянно занято, но у вас всё получится</li>
+                <li>Просто звоните 102, если прошло больше суток</li>
+                <li>Фотографии списков <a href="https://t.me/spiski_okrestina" target="_blank">на канале </a> появляются на несколько часов раньше, чем попадают на сайт</li>
+                <li>Если человек до суда был в ИВС или ЦИП, то решение суда можно узнать лично <a href="http://0908help.tilda.ws/sudy" target="_blank">в канцелярии</a> в тот же день. Район суда совпадает с районом РУВД, куда отвезли задержанного. Из Октябрьского РУВД будут судить в суде Октябрьского района
+                    <br/>
+                    Решения судов в Жодино появляются <a href="https://t.me/spiski_okrestina" target="_blank">на канале</a> на следующий день (иногда через день) после вынесения решения
+                </li>
+                <li>Узнать, где человек будет сидеть сутки, можно на следующий день (иногда через день) после решения суда на этом сайте или <a href="https://t.me/spiski_okrestina" target="_blank">на канале</a></li>
+                <li>Если вы узнали что-то самостоятельно, сообщите об этом волонтёрам <a href="https://t.me/bel_spiski_bot" target="_blank">@bel_spiski_bot</a></li>
+            </ol>
+            </p>
+            <p>
+                Подробная <a href="http://0908help.tilda.ws/faq" target="_blank">инструкция</a> по поиску людей от волонтёров
+            </p>
+            <p>
+                Здесь можно посмотреть <a href="https://revera.by/en/info-centr/707-pamyatka-dlya-poiska-mestonaxozhdeniya-zaderzhannogo/" target="_blank">подробный алгоритм поиска </a> от адвокатского бюро Ревера
+            </p>
+        </div>
+        <div class="col s12 m4 l2"></div>
+    </div>
+</section>
