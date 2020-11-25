@@ -7,13 +7,22 @@ defmodule SpiskiWeb.PageController do
     names = (params["search"]["names"] || "")
             |> String.split(",")
             |> Enum.map(
-                 &(
-                   String.capitalize(&1
+                 fn x ->
+                   String.split(x, "-")
+                   |> Enum.map(
+                        fn a ->
+                          String.capitalize(
+                            a
+                            |> String.trim
+                            |> String.split
+                            |> (List.first) || ""
+                          )
+                        end
+                      )
+                   |> Enum.join("-")
                    |> String.trim
-                   |> String.split
-                   |> (List.first) || "")
-                   |> String.trim)
                    |> String.replace("ё", "е")
+                 end
                )
             |> Enum.reject(&(&1 == ""))
 
