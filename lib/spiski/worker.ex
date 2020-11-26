@@ -20,6 +20,11 @@ defmodule Spiski.Worker do
       name: "Сегодня для публикации",
       start_index: 0,
       refresh_time: 5 * 60 * 1000
+    },
+    digital: %{
+      name: "Оцифровка для публикации",
+      start_index: 100_000,
+      refresh_time: 5 * 60 * 1000
     }
   }
 
@@ -34,6 +39,7 @@ defmodule Spiski.Worker do
     Process.send_after(self(), :october, 30 * 1000)
     Process.send_after(self(), :november, 1)
     Process.send_after(self(), :today, 60 * 1000)
+    Process.send_after(self(), :digital, 90 * 1000)
     {:ok, state}
   end
 
