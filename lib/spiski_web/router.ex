@@ -19,10 +19,12 @@ defmodule SpiskiWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SpiskiWeb do
-  #   pipe_through :api
-  # end
+#   Other scopes may use custom stacks.
+   scope "/api", SpiskiWeb do
+     pipe_through :api
+
+     get "/", PageController, :api
+   end
 
   # Enables LiveDashboard only for development
   #
