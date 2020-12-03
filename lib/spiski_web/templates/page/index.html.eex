@@ -25,6 +25,11 @@
                 <%= for person <- @data[name] do %>
                     <p><b><%= "ФИО: #{person["ФИО"]}" %></b></p>
 
+                    <%= if person["Дата задержания"] != "" do %>
+                    <p>Дата задержания: <b> <%= "#{person["Дата задержания"]}" %></b></p>
+                    <!-- Timex.today |> Timex.format!("%d.%m.%Y", :strftime) -->
+                    <% end %>
+
                     <%= if person["Год"] != "" do %>
                         <p><%= "Год или дата рождения: #{person["Год"]}" %></p>
                     <% else %>
@@ -44,11 +49,6 @@
 
                     <%= if person["Отпустили"] != "" do %>
                         <p><%= "Дополнительная информация: #{person["Отпустили"]}" %></p>
-                    <% end %>
-
-                    <%= if person["Дата задержания"] != "" do %>
-                        <p>Дата задержания: <b> <%= "#{person["Дата задержания"]}" %></b></p>
-                        <!-- Timex.today |> Timex.format!("%d.%m.%Y", :strftime) -->
                     <% end %>
 
                     <%= if person["Дата выхода"] != "" do %>
@@ -85,7 +85,7 @@
                     Решения судов в Жодино появляются <a href="https://t.me/spiski_okrestina" target="_blank">на канале</a> на следующий день (иногда через день) после вынесения решения
                 </li>
                 <li>Узнать, где человек будет сидеть сутки, можно на следующий день (иногда через день) после решения суда на этом сайте или <a href="https://t.me/spiski_okrestina" target="_blank">на канале</a></li>
-                <li>Если вы узнали что-то самостоятельно, сообщите об этом волонтёрам <a href="https://t.me/bel_spiski_bot" target="_blank">@bel_spiski_bot</a></li>
+                <li>Если вы узнали что-то самостоятельно, сообщите об этом волонтёрам <a href="https://t.me/SpiskiLiveBot" target="_blank">@SpiskiLiveBot</a></li>
             </ol>
             </p>
             <p>

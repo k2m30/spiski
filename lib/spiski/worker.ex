@@ -12,7 +12,7 @@ defmodule Spiski.Worker do
       refresh_time: 30 * 60 * 1000
     },
     november: %{
-      name: "Ноябрь для публикации",
+      name: "Ноябрь-Декабрь для публикации",
       start_index: 1_100_000,
       refresh_time: 5 * 60 * 1000
     },
