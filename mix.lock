@@ -15,6 +15,7 @@
   "jason": {:hex, :jason, "1.2.2", "ba43e3f2709fd1aa1dce90aaabfd039d000469c05c56f0b8e31978e03fa39052", [:mix], [{:decimal, "~> 1.0 or ~> 2.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "18a228f5f0058ee183f29f9eae0805c6e59d61c3b006760668d8d18ff0d12179"},
   "joken": {:hex, :joken, "2.3.0", "62a979c46f2c81dcb8ddc9150453b60d3757d1ac393c72bb20fc50a7b0827dc6", [:mix], [{:jose, "~> 1.10", [hex: :jose, repo: "hexpm", optional: false]}], "hexpm", "57b263a79c0ec5d536ac02d569c01e6b4de91bd1cb825625fe90eab4feb7bc1e"},
   "jose": {:hex, :jose, "1.10.1", "16d8e460dae7203c6d1efa3f277e25b5af8b659febfc2f2eb4bacf87f128b80a", [:mix, :rebar3], [], "hexpm", "3c7ddc8a9394b92891db7c2771da94bf819834a1a4c92e30857b7d582e2f8257"},
+  "logger_file_backend": {:hex, :logger_file_backend, "0.0.11", "3bbc5f31d3669e8d09d7a9443e86056fae7fc18e45c6f748c33b8c79a7e147a1", [:mix], [], "hexpm", "62be826f04644c62b0a2bc98a13e2e7ae52c0a4eda020f4c59d7287356d5e445"},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], [], "hexpm", "69b09adddc4f74a40716ae54d140f93beb0fb8978d8636eaded0c31b6f099f16"},
   "mime": {:hex, :mime, "1.4.0", "5066f14944b470286146047d2f73518cf5cca82f8e4815cf35d196b58cf07c47", [:mix], [], "hexpm", "75fa42c4228ea9a23f70f123c74ba7cece6a03b1fd474fe13f6a7a85c6ea4ff6"},
   "mimerl": {:hex, :mimerl, "1.2.0", "67e2d3f571088d5cfd3e550c383094b47159f3eee8ffa08e64106cdf5e981be3", [:rebar3], [], "hexpm", "f278585650aa581986264638ebf698f8bb19df297f66ad91b18910dfc6e19323"},

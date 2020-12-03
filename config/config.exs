@@ -23,12 +23,16 @@ config :spiski,
        live_view: [
          signing_salt: "Z9qqCgWX"
        ]
-
-# Configures Elixir's Logger
 config :logger,
-       :console,
-       format: "$time $metadata[$level] $message\n",
-       metadata: [:request_id]
+       backends: [:console, {LoggerFileBackend, :error_log}],
+       format: "[$level] $message\n"
+
+config :logger, :error_log,
+       path: "/tmp/spiski.log",
+       level: :info
+
+config :logger, :console,
+       level: :info
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

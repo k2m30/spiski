@@ -20,7 +20,7 @@ defmodule Spiski.MixProject do
   def application do
     [
       mod: {Spiski.Application, []},
-      extra_applications: [:logger, :runtime_tools, :elixir_google_spreadsheets]
+      extra_applications: [:logger, :logger_file_backend, :runtime_tools, :elixir_google_spreadsheets]
     ]
   end
 
@@ -43,7 +43,8 @@ defmodule Spiski.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:elixir_google_spreadsheets, "~> 0.1.17"},
-      {:timex, "~> 3.5"}
+      {:timex, "~> 3.5"},
+      {:logger_file_backend, "~> 0.0.11"}
     ]
   end
 
