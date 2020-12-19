@@ -54,49 +54,52 @@ defmodule Spiski.Worker do
   end
 
   defp get_data(month) do
-    {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet(@sheet_id, list_name: @lists[month][:name])
-    respond = GSS.Spreadsheet.rows(pid)
-    case respond do
-      {:ok, rows_number} -> batch_size = 300
-                            start_index = @lists[month][:start_index]
-                            for i <- 0..div(rows_number, batch_size) do
-                              respond = GSS.Spreadsheet.read_rows(
-                                pid,
-                                i * batch_size + 1,
-                                (i + 1) * batch_size,
-                                column_to: 22,
-                                pad_empty: true
-                              )
-                              case respond do
-                                {:ok, rows} ->
+    try do
+      {:ok, pid} = GSS.Spreadsheet.Supervisor.spreadsheet(@sheet_id, list_name: @lists[month][:name])
+      case GSS.Spreadsheet.rows(pid) do
+        {:ok, rows_number} -> batch_size = 300
+                              start_index = @lists[month][:start_index]
+                              for i <- 0..div(rows_number, batch_size) do
+                                respond = GSS.Spreadsheet.read_rows(
+                                  pid,
+                                  i * batch_size + 1,
+                                  (i + 1) * batch_size,
+                                  column_to: 22,
+                                  pad_empty: true
+                                )
+                                case respond do
+                                  {:ok, rows} ->
 
-                                  if i == 0 do
-                                    [headers | rows] = rows
-                                    :ets.insert(:db, {:headers, headers})
-                                  end
+                                    if i == 0 do
+                                      [headers | rows] = rows
+                                      :ets.insert(:db, {:headers, headers})
+                                    end
 
-                                  rows
-                                  |> Enum.with_index
-                                  |> Enum.each(
-                                       fn ({row, index}) ->
-                                         row = List.replace_at(row, 0, start_index + i * batch_size + index);
-                                         :ets.insert(
-                                           :db,
-                                           row ++ [
-                                             Enum.at(row, 1)
-                                             |> String.split
-                                             |> List.first
-                                           ]
-                                           |> List.to_tuple
-                                         )
-                                       end
-                                     )
-                                {:error, error} -> Logger.error error
+                                    rows
+                                    |> Enum.with_index
+                                    |> Enum.each(
+                                         fn ({row, index}) ->
+                                           row = List.replace_at(row, 0, start_index + i * batch_size + index);
+                                           :ets.insert(
+                                             :db,
+                                             row ++ [
+                                               Enum.at(row, 1)
+                                               |> String.split
+                                               |> List.first
+                                             ]
+                                             |> List.to_tuple
+                                           )
+                                         end
+                                       )
+                                  {:error, error} -> Logger.error error
+                                end
                               end
-                            end
 
 
-      {:error, error} -> Logger.error error
+        {:error, error} -> Logger.error error
+      rescue
+        error -> Logger.error error
+      end
     end
   end
 end
