@@ -97,9 +97,9 @@ defmodule Spiski.Worker do
 
 
         {:error, error} -> Logger.error error
-      rescue
-        error -> Logger.error error
       end
+    rescue
+      error -> Logger.error error
     end
   end
 end
