@@ -98,8 +98,9 @@ defmodule Spiski.Worker do
 
         {:error, error} -> Logger.error error
       end
-    rescue
-      error -> Logger.error error
+    catch
+      :exit, {:timeout, _} -> Logger.warning "#{__MODULE__} exited by timeout"
+      _err_type, error -> Logger.error error
     end
   end
 end
