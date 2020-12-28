@@ -89,7 +89,7 @@
             <div class="col s12 m4 l8">
                 <p class="black-text text-lighten-4"><b>Последнее обновление в <%=" #{Timex.now("Europe/Minsk") |> Timex.format!("%H:%M:%S", :strftime)} " %></b></p>
                 <p class="black-text text-lighten-4">Информация собрана волонтёрами канала <a href="https://t.me/spiski_okrestina" target="_blank" >@spiski_okrestina</a> из всех доступных источников.  </p>
-                <p class="black-text text-lighten-4"><%= "В базе информация о #{@db_size} задержаниях с 01.10.2020" %>  </p>
+                <p class="black-text text-lighten-4"><%= "В базе информация о #{@db_size} задержаниях с 09.08.2020" %>  </p>
             </div>
             <div class="col s12 m4 l2"></div>
         </div>
