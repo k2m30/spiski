@@ -6,6 +6,11 @@ defmodule Spiski.Worker do
   use GenServer
 
   @lists %{
+    august: %{
+      name: "Август для публикации",
+      start_index: 900_000,
+      refresh_time: 180 * 60 * 1000
+    },
     august_begin: %{
       name: "09.08-23.08 (Весна) для публикации",
       start_index: 1_000_000,
@@ -51,6 +56,7 @@ defmodule Spiski.Worker do
 
   def init(state) do
     :ets.new(:db, [:set, :public, :named_table, read_concurrency: true])
+    Process.send_after(self(), :august, 180 * 1000)
     Process.send_after(self(), :august_begin, 150 * 1000)
     Process.send_after(self(), :august_end, 120 * 1000)
     Process.send_after(self(), :september, 90 * 1000)
