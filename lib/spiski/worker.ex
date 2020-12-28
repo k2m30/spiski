@@ -6,14 +6,29 @@ defmodule Spiski.Worker do
   use GenServer
 
   @lists %{
+    august_begin: %{
+      name: "09.08-23.08 (Весна) для публикации",
+      start_index: 1_000_000,
+      refresh_time: 180 * 60 * 1000
+    },
+    august_end: %{
+      name: "25.08-05.09 для публикации",
+      start_index: 1_100_000,
+      refresh_time: 180 * 60 * 1000
+    },
+    september: %{
+      name: "08.09-26.09 для публикации",
+      start_index: 1_200_000,
+      refresh_time: 180 * 60 * 1000
+    },
     october: %{
       name: "Сентябрь-Октябрь для публикации",
-      start_index: 1_000_000,
-      refresh_time: 30 * 60 * 1000
+      start_index: 1_300_000,
+      refresh_time: 180 * 60 * 1000
     },
     november: %{
       name: "Ноябрь-Декабрь для публикации",
-      start_index: 1_100_000,
+      start_index: 1_400_000,
       refresh_time: 5 * 60 * 1000
     },
     today: %{
@@ -36,10 +51,13 @@ defmodule Spiski.Worker do
 
   def init(state) do
     :ets.new(:db, [:set, :public, :named_table, read_concurrency: true])
-    Process.send_after(self(), :october, 30 * 1000)
-    Process.send_after(self(), :november, 1)
-    Process.send_after(self(), :today, 60 * 1000)
-    Process.send_after(self(), :digital, 90 * 1000)
+    Process.send_after(self(), :august_begin, 150 * 1000)
+    Process.send_after(self(), :august_end, 120 * 1000)
+    Process.send_after(self(), :september, 90 * 1000)
+    Process.send_after(self(), :october, 60 * 1000)
+    Process.send_after(self(), :november, 30 * 1000)
+    Process.send_after(self(), :digital, 15 * 1000)
+    Process.send_after(self(), :today, 1 )
     {:ok, state}
   end
 
