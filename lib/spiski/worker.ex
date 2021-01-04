@@ -34,6 +34,11 @@ defmodule Spiski.Worker do
     november: %{
       name: "Ноябрь-Декабрь для публикации",
       start_index: 1_400_000,
+      refresh_time: 15 * 60 * 1000
+    },
+    january: %{
+      name: "Январь для публикации",
+      start_index: 1_500_000,
       refresh_time: 5 * 60 * 1000
     },
     today: %{
@@ -61,7 +66,8 @@ defmodule Spiski.Worker do
     Process.send_after(self(), :august_end, 120 * 1000)
     Process.send_after(self(), :september, 90 * 1000)
     Process.send_after(self(), :october, 60 * 1000)
-    Process.send_after(self(), :november, 30 * 1000)
+    Process.send_after(self(), :november, 45 * 1000)
+    Process.send_after(self(), :january, 30 * 1000)
     Process.send_after(self(), :digital, 15 * 1000)
     Process.send_after(self(), :today, 1 )
     {:ok, state}
