@@ -61,7 +61,7 @@
 
                 <%= if @data[name] == [] and name != "" do %>
                 <p>Информации о задержании такого человека нет. Если вы уверены, что это не так, напишите <b>ФИО и дату задержания</b> в Телеграме в
-                    <a href="https://t.me/bel_spiski_bot" target="_blank">@bel_spiski_bot</a></p>
+                    <a href="https://t.me/spiskov_net_bot" target="_blank">@spiskov_net_bot</a></p>
                 <hr/>
                 <% end %>
 
