@@ -44,6 +44,7 @@ defmodule Spiski.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:elixir_google_spreadsheets, "~> 0.1.17"},
       {:timex, "~> 3.5"},
+      {:pid_file, "~> 0.1.0"},
       {:logger_file_backend, "~> 0.0.11"}
     ]
   end

@@ -50,3 +50,5 @@ config :elixir_google_spreadsheets,
        :client,
        request_workers: 50,
        recv_timeout: 10_000
+
+config :pid_file, file: "./spiski.pid"

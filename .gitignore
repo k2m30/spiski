@@ -34,3 +34,5 @@ npm-debug.log
 /priv/static/
 
 config/service_account.json
+
+spiski.pid
