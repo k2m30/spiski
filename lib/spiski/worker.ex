@@ -75,7 +75,7 @@ defmodule Spiski.Worker do
     Process.send_after(self(), :january, 45 * 1000)
     Process.send_after(self(), :march, 30 * 1000)
     Process.send_after(self(), :digital, 15 * 1000)
-    Process.send_after(self(), :today, 1 )
+    Process.send_after(self(), :today, 1)
     {:ok, state}
   end
 
@@ -84,8 +84,8 @@ defmodule Spiski.Worker do
     schedule_work(month, @lists[month][:refresh_time]) # Reschedule once more
 
     Logger.info(month)
-    Logger.info("Memory",:ets.info(:db, :memory))
-    Logger.info("Size",:ets.info(:db, :size))
+    Logger.info("Memory", Integer.to_string(:ets.info(:db, :memory)))
+    Logger.info("Size", Integer.to_string(:ets.info(:db, :size)))
     {:noreply, state}
   end
 
