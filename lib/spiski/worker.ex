@@ -19,26 +19,31 @@ defmodule Spiski.Worker do
     august_end: %{
       name: "25.08-05.09 для публикации",
       start_index: 1_100_000,
-      refresh_time: 180 * 60 * 1000
+      refresh_time: 360 * 60 * 1000
     },
     september: %{
       name: "08.09-26.09 для публикации",
       start_index: 1_200_000,
-      refresh_time: 180 * 60 * 1000
+      refresh_time: 360 * 60 * 1000
     },
     october: %{
       name: "Сентябрь-Октябрь для публикации",
       start_index: 1_300_000,
-      refresh_time: 180 * 60 * 1000
+      refresh_time: 360 * 60 * 1000
     },
     november: %{
       name: "Ноябрь-Декабрь для публикации",
       start_index: 1_400_000,
-      refresh_time: 15 * 60 * 1000
+      refresh_time: 360 * 60 * 1000
     },
     january: %{
-      name: "Январь для публикации",
+      name: "Январь-Февраль для публикации",
       start_index: 1_500_000,
+      refresh_time: 30 * 60 * 1000
+    },
+    march: %{
+      name: "Март-Апрель для публикации",
+      start_index: 1_600_000,
       refresh_time: 5 * 60 * 1000
     },
     today: %{
@@ -61,13 +66,14 @@ defmodule Spiski.Worker do
 
   def init(state) do
     :ets.new(:db, [:set, :public, :named_table, read_concurrency: true])
-    Process.send_after(self(), :august, 180 * 1000)
-    Process.send_after(self(), :august_begin, 150 * 1000)
-    Process.send_after(self(), :august_end, 120 * 1000)
-    Process.send_after(self(), :september, 90 * 1000)
-    Process.send_after(self(), :october, 60 * 1000)
-    Process.send_after(self(), :november, 45 * 1000)
-    Process.send_after(self(), :january, 30 * 1000)
+    Process.send_after(self(), :august, 210 * 1000)
+    Process.send_after(self(), :august_begin, 180 * 1000)
+    Process.send_after(self(), :august_end, 150 * 1000)
+    Process.send_after(self(), :september, 120 * 1000)
+    Process.send_after(self(), :october, 90 * 1000)
+    Process.send_after(self(), :november, 60 * 1000)
+    Process.send_after(self(), :january, 45 * 1000)
+    Process.send_after(self(), :march, 30 * 1000)
     Process.send_after(self(), :digital, 15 * 1000)
     Process.send_after(self(), :today, 1 )
     {:ok, state}
@@ -76,6 +82,10 @@ defmodule Spiski.Worker do
   def handle_info(month, state) do
     get_data(month)
     schedule_work(month, @lists[month][:refresh_time]) # Reschedule once more
+
+    Logger.info(month)
+    Logger.info("Memory",:ets.info(:db, :memory))
+    Logger.info("Size",:ets.info(:db, :size))
     {:noreply, state}
   end
 
