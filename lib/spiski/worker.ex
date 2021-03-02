@@ -84,8 +84,8 @@ defmodule Spiski.Worker do
     schedule_work(month, @lists[month][:refresh_time]) # Reschedule once more
 
     Logger.info(month)
-    Logger.info("Memory", Integer.to_string(:ets.info(:db, :memory)))
-    Logger.info("Size", Integer.to_string(:ets.info(:db, :size)))
+    Logger.info("Memory: #{:ets.info(:db, :memory)}")
+    Logger.info("Size: #{:ets.info(:db, :size)}")
     {:noreply, state}
   end
 
