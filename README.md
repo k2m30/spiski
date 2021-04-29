@@ -4,6 +4,7 @@
 
 * Elixir 1.11+
 * Redis with default config
+* `service.json` file with Google service account credentials expected under the `config/` directory
 
 ## Open 80 port for Cowboy webserver work directly
 
