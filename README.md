@@ -1,4 +1,4 @@
-# spiski.live
+# spiski.live (deprecated, moved to Docker)
 
 ## Prerequisites
 
