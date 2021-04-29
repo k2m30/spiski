@@ -1,19 +1,28 @@
-# Spiski
+# spiski.live
 
-To start your Phoenix server:
+## Prerequisites
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+* Elixir 1.11+
+* Redis with default config
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Open 80 port for Cowboy webserver work directly
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```shell
+sudo setcap CAP_NET_BIND_SERVICE=+eip /usr/lib/erlang/erts-11.1/bin/beam.smp
+```
 
-## Learn more
+## Deploy
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```shell
+git pull 
+kill -9 beam.smp 
+export MIX_ENV=prod
+mix do deps.get, deps.compile
+elixir --erl "-detached" -S mix run --no-halt
+```
+
+## Run
+
+```shell
+MIX_ENV=prod elixir --erl "-detached" -S mix run --no-halt
+```
